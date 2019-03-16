@@ -1,4 +1,15 @@
+.wrapper {
+    height: auto;   
+    width: auto;
+    padding: 5px;
+    background-image: url("../images/abstract-image.jpg");
+}
 
+h1 {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: goldenrod;
+    border-bottom: solid 2px;
+}
 img {
     width: 100px;
     height: 100px;
@@ -9,3 +20,34 @@ img {
 .row {
     margin: 3px;
 }
+#target-score-area {
+    margin: 3px;
+    height: 100px;
+    width:  300px;
+    background-color: lightgreen;
+}
+
+#win-loss-tally {
+    margin: 3px;
+    height: 100px;
+    width: 100px;
+    background-color: lightgreen;
+}
+
+#your-score-text {
+    width: auto;
+    height: 32px;
+    background-color: lightgreen;
+    margin: 3px;
+}
+
+#your-score-area {
+    width: auto;
+    height: 48px;
+    background-color: lightgreen;
+    margin: 3px;
+}
+
+
+
+

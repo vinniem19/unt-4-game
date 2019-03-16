@@ -4,44 +4,54 @@
     //Here is a counter
     var counter = 0;
 
-    var numberToGet = Math.floor((Math.random() * 50) + 1);
+    var numberToGet = Math.floor((Math.random() * 120) + 1);
 
     $("#find-number").text(numberToGet);
+    $("#find-number").css("font-size" , "36px");
 
     //Here I am making an array for number to add
     //each time the player selects a crystal
-    
-    var numberOptions = [5,8,13,2];
 
-    //this array will be an array of the images I will set up
+    var images = [ "./assets/images/BlueCrystal.jpg" , 
+                   "./assets/images/GreenCrystal.png" , 
+                   "./assets/images/PinkCrystal.jpg" , 
+                   "./assets/images/YellowCrystal.jpg"];
+    
+    var numberOptions = [];
+
+        for(var i = 0; i < 4; i++) {
+            console.log(images[i]);
+            addCrystalNum();
+            var imageCrystalBlue = $("<img>");
+            imageCrystalBlue.addClass("crystal-image");
+            imageCrystalBlue.attr("src", images[i]);
+            imageCrystalBlue.attr("data-crystalvalue", numberOptions[i]);
+            $("#crystals").append(imageCrystalBlue);
+            console.log(numberOptions);
+        }
+        
+            function addCrystalNum() {
+                var newNum = Math.floor(Math.random() * 12) + 1;
+                if(numberOptions.includes(newNum)) {
+                    var notUsedNum = newNum + 1;
+                    numberOptions.push(notUsedNum);
+                    } else {
+                        numberOptions.push(newNum)
+                    }
+                }
     
     
     //and a for loop to have each crystal add one
     //of those numbers to the total after it is clicked
     //blue crystal
     
-    /*this was an attempt to create 2 for loops 
-    that generated the images and assigned a value
-    to them 
+    
 
-    var images = [ "./assets/images/BlueCrystal.jpg" , 
-                   "./assets/images/GreenCrystal.png" , 
-                   "./assets/images/PinkCrystal.jpg" , 
-                   "./assets/images/YellowCrystal.jpg"];
 
-    for(var a = 0; a < images.length; a++){
+    
+            
         
-            var imageCrystalBlue = $("<img>");
-            imageCrystalBlue.addClass("crystal-image");
-            imageCrystalBlue.attr("src", images[a]);
-            $("#crystals").append(imageCrystalBlue);
-        
-
-        //give each crystal their separate number value
-        for(var i = 0; i < numberOptions.length; i++){
-        imageCrystalBlue.attr("data-crystalvalue", numberOptions[i]);
-        }}
-        */
+        /*
        //blue crystal
        var imageCrystalBlue = $("<img>");
         imageCrystalBlue.addClass("crystal-image");
@@ -68,7 +78,7 @@
         imageCrystalBlue.attr("src", "./assets/images/YellowCrystal.jpg");
         imageCrystalBlue.attr("data-crystalvalue", numberOptions[3]);
         $("#crystals").append(imageCrystalBlue);
-
+    */
     
         
     //I will use an onclick event here to make the images clickable.
@@ -80,10 +90,13 @@
         alert("Your new score is: " + counter);
 
         if (counter === numberToGet) {
+            //not an alert, but update the div class
+            // with tally of wins/losses.
             alert("You win!");
         } else if (counter > numberToGet) {
             alert("You lose!");
         }
+
     });
         
     
