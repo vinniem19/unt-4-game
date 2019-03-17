@@ -5,10 +5,19 @@
 var counter = 0;
 //this is my target variable
 var numberToGet = Math.floor((Math.random() * 120) + 1);
-//this is a variable for total
+//these are my variables for total, wins, and losses
 var total = 0;
 var wins = 0;
 var losses = 0;
+
+// This is a function to reset the game.
+function gameReset() {
+    numberToGet = Math.floor((Math.random() * 120) + 1);
+    $("#find-number").text(numberToGet);
+    counter = 0;
+    total = 0;
+    $("#your-score-points").text(total);
+}
 // I attached the target number to the DOM
 // and created a css font-size for it
 $("#find-number").text(numberToGet);
@@ -46,8 +55,7 @@ function addCrystalNum() {
         numberOptions.push(newNum)
     }
 }
-// The display of total, which will need to be 
-// refreshed after every crystal clicked;
+
 
 /* I moved this down after the onclick to be 
    displayed instead of an alert.
@@ -107,15 +115,21 @@ $(".crystal-image").on("click", function () {
     crystalValue = parseInt(crystalValue);
     counter += crystalValue;
 
+    // Total is refreshed after every crystal clicked;
     $("#your-score-points").text(total + counter);
 
     if (counter === numberToGet) {
         //not an alert, but update the div class
         // with tally of wins/losses.
-        alert("You win!");
+        wins++;
+        $("#goodwins").text(wins);
+        gameReset();
     } else if (counter > numberToGet) {
-        alert("You lose!");
+        losses++;
+        $("#badlosses").text(losses);
+        gameReset();
     }
+    
 
 });
 
