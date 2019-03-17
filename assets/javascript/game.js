@@ -46,7 +46,13 @@ function addCrystalNum() {
         numberOptions.push(newNum)
     }
 }
-$("#your-score-points").text(total);
+// The display of total, which will need to be 
+// refreshed after every crystal clicked;
+
+/* I moved this down after the onclick to be 
+   displayed instead of an alert.
+   $("#your-score-points").text(total);
+   */
 
 $("#goodwins").text( + wins);
 $("#badlosses").text( + losses );
@@ -92,6 +98,8 @@ imageCrystalBlue.attr("data-crystalvalue", numberOptions[3]);
 $("#crystals").append(imageCrystalBlue);
 */
 
+// Display the total at 0
+$("#your-score-points").text(total);
 
 //I will use an onclick event here to make the images clickable.
 $(".crystal-image").on("click", function () {
@@ -99,7 +107,7 @@ $(".crystal-image").on("click", function () {
     crystalValue = parseInt(crystalValue);
     counter += crystalValue;
 
-    alert("Your new score is: " + counter);
+    $("#your-score-points").text(total + counter);
 
     if (counter === numberToGet) {
         //not an alert, but update the div class
