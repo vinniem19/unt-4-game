@@ -4,7 +4,7 @@
 //Here is a counter
 var counter = 0;
 //this is my target variable
-var numberToGet = Math.floor((Math.random() * 120) + 1);
+var numberToGet = Math.floor((Math.random() * 101) + 19);
 //these are my variables for total, wins, and losses
 var total = 0;
 var wins = 0;
