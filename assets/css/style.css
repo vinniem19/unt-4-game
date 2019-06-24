@@ -10,11 +10,16 @@ h1 {
     color: goldenrod;
     border-bottom: solid 2px;
 }
+
 img {
     width: 100px;
     height: 100px;
     margin: 3px;
     border: solid;
+}
+
+img:hover {
+    opacity: 0.5;
 }
 
 .row {

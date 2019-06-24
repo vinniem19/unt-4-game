@@ -5,15 +5,21 @@
 var counter = 0;
 //this is my target variable
 var numberToGet = Math.floor((Math.random() * 101) + 19);
+
 //these are my variables for total, wins, and losses
 var total = 0;
 var wins = 0;
 var losses = 0;
 
+//I will use this array to set number values
+//to each crystal.
+var numberOptions = [];
+
 // This is a function to reset the game.
 function gameReset() {
-    numberToGet = Math.floor((Math.random() * 120) + 1);
+    numberToGet = Math.floor((Math.random() * 101) + 19);
     $("#find-number").text(numberToGet);
+    numberOptions = [];
     counter = 0;
     total = 0;
     $("#your-score-points").text(total);
@@ -29,31 +35,30 @@ var images = ["./assets/images/BlueCrystal.jpg",
     "./assets/images/GreenCrystal.png",
     "./assets/images/PinkCrystal.jpg",
     "./assets/images/YellowCrystal.jpg"];
-//I will use this array to set number values
-//to each crystal.
-var numberOptions = [];
-//this adds the images to the DOM dynamically.
-for (var i = 0; i < 4; i++) {
-    console.log(images[i]);
-    addCrystalNum();
-    var imageCrystalBlue = $("<img>");
-    imageCrystalBlue.addClass("crystal-image");
-    imageCrystalBlue.attr("src", images[i]);
-    imageCrystalBlue.attr("data-crystalvalue", numberOptions[i]);
-    $("#crystals").append(imageCrystalBlue);
-    console.log(numberOptions);
-}
 //this function sets up the values for the previous 
 //for loop.
 
 function addCrystalNum() {
-    var newNum = Math.floor(Math.random() * 12) + 1;
+    var newNum = Math.floor(Math.random() * 11) + 1;
     if (numberOptions.includes(newNum)) {
         var notUsedNum = newNum + 1;
         numberOptions.push(notUsedNum);
     } else {
         numberOptions.push(newNum)
     }
+}
+
+//this adds the images to the DOM dynamically.
+
+for (var i = 0; i < 4; i++) {
+    addCrystalNum();
+    var imageCrystalBlue = $("<img>");
+    imageCrystalBlue.addClass("crystal-image");
+    imageCrystalBlue.attr("src", images[i]);
+    imageCrystalBlue.attr("data-crystalvalue", numberOptions[i]);
+    $("#crystals").append(imageCrystalBlue);
+    console.log(images[i]);
+    console.log(numberOptions);
 }
 
 
@@ -132,12 +137,8 @@ $(".crystal-image").on("click", function () {
     
 
 });
-
-
    //The player will be shown a random number at the start of 
    //the game.
-
-
 
 
 // When the player clicks on a crystal, it will add a specific
