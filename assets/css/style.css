@@ -1,8 +1,12 @@
-.wrapper {
+body {
     height: auto;   
     width: auto;
     padding: 5px;
     background-image: url("../images/abstract-image.jpg");
+}
+
+.wrapper {
+    margin: 10px;
 }
 
 h1 {
@@ -12,9 +16,9 @@ h1 {
 }
 
 img {
-    width: 100px;
-    height: 100px;
-    margin: 3px;
+    width: 250px;
+    height: 250px;
+    margin: 25px 200px;
     border: solid;
 }
 
@@ -22,17 +26,24 @@ img:hover {
     opacity: 0.5;
 }
 
-.row {
-    margin: 3px;
-}
 #target-score-area {
-    margin: 3px;
-    height: 100px;
-    width:  300px;
+    z-index: 100;
+    position: absolute;
+    left: 600px;
+    top: 80px;
+    height: 60px;
+    width:  85px;
     background-color: lightgreen;
+}    
+
+#find-number {
+    size: 60px;
+    height: 500px;
 }
 
 #win-loss-tally {
+    position: relative;
+    left: 700px;
     margin: 3px;
     height: 100px;
     width: 100px;
@@ -44,15 +55,40 @@ img:hover {
     height: 32px;
     background-color: lightgreen;
     margin: 3px;
+    z-index: 100;
+    position: absolute;
+    left: 550px;
+    top: 550px;
 }
 
+h1 {
+margin: 10px;
+}
+h2 {
+    font-size: 20px;
+}
+
+.numbertext {
+    margin-left: 400px;
+    text-align: center;
+}
+
+.magicnumber {
+    z-index: 100;
+    position: absolute;
+    left: 600px;
+    top: 235px;
+}
 #your-score-area {
-    width: auto;
+    width: 50px;
     height: 48px;
     background-color: lightgreen;
     margin: 3px;
+    z-index:  100;
+    position: absolute;
+    left: 600px;
+    top: 590px;
 }
-
 
 
 

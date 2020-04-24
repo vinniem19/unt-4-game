@@ -18,8 +18,9 @@ var numberOptions = [];
 // This is a function to reset the game.
 function gameReset() {
     numberToGet = Math.floor((Math.random() * 101) + 19);
-    $("#find-number").text(numberToGet);
     numberOptions = [];
+    addCrystalNum();
+    $("#find-number").text(numberToGet);
     counter = 0;
     total = 0;
     $("#your-score-points").text(total);
@@ -32,23 +33,11 @@ $("#find-number").css("font-size", "36px");
 
 //this is my images array of 4 different crystals
 var images = ["./assets/images/BlueCrystal.jpg",
-    "./assets/images/GreenCrystal.png",
-    "./assets/images/PinkCrystal.jpg",
-    "./assets/images/YellowCrystal.jpg"];
-//this function sets up the values for the previous 
-//for loop.
-
-function addCrystalNum() {
-    var newNum = Math.floor(Math.random() * 11) + 1;
-    if (numberOptions.includes(newNum)) {
-        var notUsedNum = newNum + 1;
-        numberOptions.push(notUsedNum);
-    } else {
-        numberOptions.push(newNum)
-    }
-}
-
+"./assets/images/GreenCrystal.png",
+"./assets/images/PinkCrystal.jpg",
+"./assets/images/YellowCrystal.jpg"];
 //this adds the images to the DOM dynamically.
+
 
 for (var i = 0; i < 4; i++) {
     addCrystalNum();
@@ -61,6 +50,18 @@ for (var i = 0; i < 4; i++) {
     console.log(numberOptions);
 }
 
+//this function sets up the values for the previous 
+//for loop.
+
+function addCrystalNum() {
+    var newNum = Math.floor(Math.random() * 11) + 1;
+    if (numberOptions.includes(newNum)) {
+            var notUsedNum = newNum + 1;
+            numberOptions.push(notUsedNum);
+        } else {
+            numberOptions.push(newNum)
+        }
+    }
 
 /* I moved this down after the onclick to be 
    displayed instead of an alert.
