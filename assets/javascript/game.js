@@ -1,146 +1,130 @@
 // JavaScript function that wraps everything
 //$(document).ready(function() {
 
-//Here is a counter
-var counter = 0;
-//this is my target variable
-var numberToGet = Math.floor((Math.random() * 101) + 19);
 
-//these are my variables for total, wins, and losses
-var total = 0;
-var wins = 0;
-var losses = 0;
+    
+    // These are the crystal variables
+    
+    var crystal = {
+        blue: 
+        { 
+            name : "blue",
+            value : 0
+        },
+        green: 
+        { 
+            name : "green",
+            value : 0
+        },
+        yellow: 
+        { 
+            name : "yellow",
+            value : 0
+        },
+        red: 
+        { 
+            name : "red",
+            value : 0
+        }
+        
+        
+    };
+    //this is my target variable
+    var numberToGet = 0; 
+    //and the current total 
+    var total = 0;
+    
+    //these are my variables for total wins and losses
+    var wins = 0;
+    var losses = 0;
 
-//I will use this array to set number values
-//to each crystal.
-var numberOptions = [];
+
+
+
+
 
 // This is a function to reset the game.
-function gameReset() {
-    numberToGet = Math.floor((Math.random() * 101) + 19);
-    numberOptions = [];
-    addCrystalNum();
-    $("#find-number").text(numberToGet);
-    counter = 0;
+var gameReset = function() {
     total = 0;
+    numberToGet = Math.floor((Math.random() * 101) + 19);
+    $("#find-number").text(numberToGet);
+    // and created a css font-size for it
+    $("#find-number").css("font-size", "36px");
+    
     $("#your-score-points").text(total);
-}
-// I attached the target number to the DOM
-// and created a css font-size for it
-$("#find-number").text(numberToGet);
-$("#find-number").css("font-size", "36px");
-
-
-//this is my images array of 4 different crystals
-var images = ["./assets/images/BlueCrystal.jpg",
-"./assets/images/GreenCrystal.png",
-"./assets/images/PinkCrystal.jpg",
-"./assets/images/YellowCrystal.jpg"];
-//this adds the images to the DOM dynamically.
-
-
-for (var i = 0; i < 4; i++) {
-    addCrystalNum();
-    var imageCrystalBlue = $("<img>");
-    imageCrystalBlue.addClass("crystal-image");
-    imageCrystalBlue.attr("src", images[i]);
-    imageCrystalBlue.attr("data-crystalvalue", numberOptions[i]);
-    $("#crystals").append(imageCrystalBlue);
-    console.log(images[i]);
-    console.log(numberOptions);
+    
+    // I am setting a value for each crystal
+    crystal.blue.value = Math.floor(Math.random() * 10) + 1; 
+    crystal.green.value = Math.floor(Math.random() * 10) + 1; 
+    crystal.yellow.value = Math.floor(Math.random() * 10) + 1; 
+    crystal.red.value = Math.floor(Math.random() * 10) + 1; 
+    
+    // testing to the console
+    console.log(" Magic Number :" + numberToGet);
+    console.log("Blue Crystal: " + crystal.blue.value);
+    console.log("Yellow Crystal: " + crystal.yellow.value);
+    console.log("Green Crystal: " + crystal.green.value);
+    console.log("Red Crystal: " + crystal.red.value);
+    
 }
 
-//this function sets up the values for the previous 
-//for loop.
-
-function addCrystalNum() {
-    var newNum = Math.floor(Math.random() * 11) + 1;
-    if (numberOptions.includes(newNum)) {
-            var notUsedNum = newNum + 1;
-            numberOptions.push(notUsedNum);
-        } else {
-            numberOptions.push(newNum)
-        }
-    }
-
-/* I moved this down after the onclick to be 
-   displayed instead of an alert.
-   $("#your-score-points").text(total);
-   */
-
-$("#goodwins").text( + wins);
-$("#badlosses").text( + losses );
 
 
-
-//and a for loop to have each crystal add one
-//of those numbers to the total after it is clicked
-//blue crystal
-
-
-
-
-
-
-
-/*
-//blue crystal
-var imageCrystalBlue = $("<img>");
-imageCrystalBlue.addClass("crystal-image");
-imageCrystalBlue.attr("src", "./assets/images/BlueCrystal.jpg");
-imageCrystalBlue.attr("data-crystalvalue", numberOptions[0]);
-$("#crystals").append(imageCrystalBlue);
-  //green crystal
-var imageCrystalBlue = $("<img>");
-imageCrystalBlue.addClass("crystal-image");
-imageCrystalBlue.attr("src", "./assets/images/GreenCrystal.png");
-imageCrystalBlue.attr("data-crystalvalue", numberOptions[1]);
-$("#crystals").append(imageCrystalBlue);
-
-//pink crystal
-var imageCrystalBlue = $("<img>");
-imageCrystalBlue.addClass("crystal-image");
-imageCrystalBlue.attr("src", "./assets/images/PinkCrystal.jpg");
-imageCrystalBlue.attr("data-crystalvalue", numberOptions[2]);
-$("#crystals").append(imageCrystalBlue);
-
-//yellow crystal
-var imageCrystalBlue = $("<img>");
-imageCrystalBlue.addClass("crystal-image");
-imageCrystalBlue.attr("src", "./assets/images/YellowCrystal.jpg");
-imageCrystalBlue.attr("data-crystalvalue", numberOptions[3]);
-$("#crystals").append(imageCrystalBlue);
-*/
+/* Where do I put these lines of code
+//$("#goodwins").text( + wins);
+//$("#badlosses").text( + losses );
 
 // Display the total at 0
-$("#your-score-points").text(total);
-
-//I will use an onclick event here to make the images clickable.
-$(".crystal-image").on("click", function () {
-    var crystalValue = ($(this).attr("data-crystalvalue"));
-    crystalValue = parseInt(crystalValue);
-    counter += crystalValue;
-
-    // Total is refreshed after every crystal clicked;
-    $("#your-score-points").text(total + counter);
-
-    if (counter === numberToGet) {
-        //not an alert, but update the div class
+//$("#your-score-points").text(total);
+*/
+// Check to see if win
+var checkWin = function() {
+    if (total > numberToGet) {
+        losses++;
+        // but update the div class
         // with tally of wins/losses.
+        $("#badlosses").text(losses);
+        //alert("You lost!  Keep Trying.  You will get it.  A new game will start now.");
+     gameReset();
+    } else if(total === numberToGet) {
         wins++;
         $("#goodwins").text(wins);
+        alert("You win!  Great job!  You can continue with a new game now.")
         gameReset();
-    } else if (counter > numberToGet) {
-        losses++;
-        $("#badlosses").text(losses);
-        gameReset();
+        
     }
+}
+
+// This function will add the value to the total.
+var addValue = function(clickedCrystal) {
+    total += clickedCrystal.value;
+    
+    // Total is refreshed after every crystal clicked;
+    $("#your-score-points").text(total);
+    console.log("Current score: " + total);
+    
+    checkWin();
+};
+
+
+
+// Start Game
+gameReset();
+
+$("#blue").click(function() {
+    addValue(crystal.blue);
+});
+$("#pink").click(function() {
+  addValue(crystal.red);
+});
+$("#green").click(function() {
+    addValue(crystal.green);
+});
+$("#yellow").click(function() {
+    addValue(crystal.yellow);
+});
+
     
 
-});
-   //The player will be shown a random number at the start of 
-   //the game.
 
 
-// When the player clicks on a crystal, it will add a specific
-// amount of points to the player's total score. 
